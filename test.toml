@@ -1,0 +1,100 @@
+# Testcase Structure:
+#    name: String, // The name of the testcase
+#    subname: Option<String>, // used for unittests later
+#    testcase_type: String, //Only IO supported now
+#    description: Option<String>, // optional description
+#    args: Option<String>, // command line arguments 
+#    cflags: Option<String>, // compile flags
+#    tags: Option<Tags>, // tags for unit tests
+#    in_file: Option<String>, // stdin file 
+#    exp_file: Option<String>, // stdout file
+#    in_string: Option<String>, // stdin string (in_file has higher priority)
+#    exp_string: Option<String>, // stdout string (out_file has higher priority)
+#    exp_retvar: Option<i32>, // optional expected status code
+#    timeout: Option<i32>, // timeout in seconds .. default is 5 sec
+#    env_vars:Option<String>, // optional environment parameters RAND_SEED=123,foo=bar
+
+[project_data]
+project_name = "a2"
+makefile_path = "."
+maketarget = "bin"
+
+[[testcases]]
+name = "square_uppercase_key"
+testcase_type = "IO"
+description = "Playfair square test with simple uppercase key"
+in_file = "tests/01_square_uppercase_key/in"
+exp_file = "tests/01_square_uppercase_key/out"
+exp_retvar = 0
+
+[[testcases]]
+name = "square_lowercase_key"
+testcase_type = "IO"
+description = "Playfair square test with simple lowercase key"
+in_file = "tests/02_square_lowercase_key/in"
+exp_file = "tests/02_square_lowercase_key/out"
+exp_retvar = 0
+
+[[testcases]]
+name = "square_replace_WV"
+testcase_type = "IO"
+description = "Playfair square test with key including W and V"
+in_file = "tests/03_square_replace_WV/in"
+exp_file = "tests/03_square_replace_WV/out"
+exp_retvar = 0
+
+[[testcases]]
+name = "encryption_simple_rule1"
+testcase_type = "IO"
+description = "simple Encryption test  for rule 1"
+in_file = "tests/05_encryption_simple_rule1/in"
+exp_file = "tests/05_encryption_simple_rule1/out"
+exp_retvar = 0
+
+[[testcases]]
+name = "encryption_simple_rule2"
+testcase_type = "IO"
+description = "simple Encryption test  for rule 2"
+in_file = "tests/06_encryption_simple_rule2/in"
+exp_file = "tests/06_encryption_simple_rule2/out"
+exp_retvar = 0
+
+[[testcases]]
+name = "encryption_simple_rule3"
+testcase_type = "IO"
+description = "simple Encryption test for rule 3"
+in_file = "tests/07_encryption_simple_rule3/in"
+exp_file = "tests/07_encryption_simple_rule3/out"
+exp_retvar = 0
+
+[[testcases]]
+name = "encryption_fill_x"
+testcase_type = "IO"
+description = "Encryption test for filling up the cleartext with an X at the end"
+in_file = "tests/08_encryption_fill_x/in"
+exp_file = "tests/08_encryption_fill_x/out"
+exp_retvar = 0
+
+[[testcases]]
+name = "encryption_double_letter"
+testcase_type = "IO"
+description = "Encryption test with double letter in the cleartext"
+in_file = "tests/09_encryption_double_letter/in"
+exp_file = "tests/09_encryption_double_letter/out"
+exp_retvar = 0
+
+[[testcases]]
+name = "decryption_simple"
+testcase_type = "IO"
+description = "simple decryption test"
+in_file = "tests/13_decryption_simple/in"
+exp_file = "tests/13_decryption_simple/out"
+exp_retvar = 0
+
+[[testcases]]
+name = "decryption_simple_rules"
+testcase_type = "IO"
+description = "test all 3 rules of decryption"
+in_file = "tests/14_decryption_simple_rules/in"
+exp_file = "tests/14_decryption_simple_rules/out"
+exp_retvar = 0
