@@ -35,7 +35,7 @@ void replaceLetters(char *text, char original, char new_char);
 char getUserChoice();
 void cipher(char* playfairSquare, OperationType op);
 void getInput(char* input, OperationType op);
-int makeBigram(char* input, OperationType op);
+int createBigrams(char* input, OperationType op);
 void printBigram(char* bigram);
 void getIndices(char* playfairSquare, char element, char* element_x, char* element_y);
 
@@ -68,8 +68,6 @@ int main()
     {
       cipher(*playfairSquare, IS_DECRYPTING);
     }
-
-
   }
   return 0;
 }
@@ -161,9 +159,6 @@ void cipher(char* playfairSquare, OperationType op)
         first_x = second_x;
         second_x = temp;
       }
-
-      //printf("%c wird zu %c! Oho!", input[i-1], playfairSquare[first_y * SQUARE_SIDE + first_x]);
-      //printf("%c wird zu %c! Oho!", input[i], playfairSquare[second_y * SQUARE_SIDE + first_x]);
   
       input[i - 1] = playfairSquare[first_y * SQUARE_SIDE + first_x];
       input[i] = playfairSquare[second_y * SQUARE_SIDE + second_x];
@@ -187,7 +182,6 @@ void getInput(char* input, OperationType op)
   // START
   while(1) 
   {
-
     if (op == IS_ENCRYPTING) printf("Klartext: ");
     else printf("Ciphertext: ");
 
@@ -196,8 +190,9 @@ void getInput(char* input, OperationType op)
     if(checkStringValidity(input, MAX_INPUT_LENGTH, op)) break;
   }
   // END
+
   cleanString(input, op);
-  if (makeBigram(input, op) == ERROR) getInput(input, op);
+  if (createBigrams(input, op) == ERROR) getInput(input, op);
 
   if (op == IS_ENCRYPTING) printf("Vorbereiteter Klartext: ");
   else printf("Vorbereiteter Ciphertext: ");
@@ -212,24 +207,22 @@ void getInput(char* input, OperationType op)
 ///
 /// @return length of the string
 //
-int makeBigram(char* input, OperationType op)
+int createBigrams(char* input, OperationType op)
 {
-
   int string_len = stringLength(input);
   char last_char = 0;
   char bigram[MAX_INPUT_LENGTH] = "";
   int j = 0;
 
-  //printf("Stringlen of input: %d\n", string_len);
-
   for (int i = 0; i < string_len; i++)
   {
     char current_char = input[i];
 
-    if (last_char != 0 && last_char == current_char)
+    if (i % 2 == 1 && last_char == current_char)
     {
-      if (op == IS_DECRYPTING) return ERROR;
-
+      if (op == IS_DECRYPTING) {
+        return ERROR;
+      }
       bigram[j++] = FILL_CHAR;
       bigram[j++] = current_char;
     }
@@ -271,7 +264,7 @@ void printBigram(char* bigram)
 
   for (int i = 0; i < string_len; i++)
   {
-    if ((i % 2) == 1) printf("%c ", bigram[i]);
+    if ((i % 2) == 1 && i != string_len - 1) printf("%c ", bigram[i]);
     else printf("%c", bigram[i]);
   }
 
