@@ -20,7 +20,6 @@
 #define CHOICE_STOP '0'
 #define CHOICE_ENCRYPT '1'
 #define CHOICE_DECRYPT '2'
-
 #define MAX_INPUT_LENGTH 50
 #define FILL_CHAR 'X'
 #define SUCCESS 1
@@ -53,7 +52,7 @@ char shiftLeft(char index);
 //
 int main()
 {
-  char playfair_square[5][5];
+  char playfair_square[SQUARE_SIDE][SQUARE_SIDE];
   generatePlayfairSquare(*playfair_square);
 
   char choice = 1;
