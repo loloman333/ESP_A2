@@ -240,6 +240,11 @@ int createBigrams(char* input, OperationType operation_type)
   {
     char current_char = input[i];
 
+    if (current_char == 'W' && operation_type == IS_DECRYPTING)
+    {
+      return ERROR;
+    }
+
     if (i % 2 == 1 && last_char == current_char)
     {
       if (operation_type == IS_DECRYPTING) {
