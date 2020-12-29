@@ -206,6 +206,7 @@ void getInput(char* input, OperationType operation_type)
   if (createBigrams(input, operation_type) == ERROR)
   {
     getInput(input, operation_type);
+    return;
   }
 
   if (operation_type == IS_ENCRYPTING)
