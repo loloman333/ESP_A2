@@ -35,7 +35,6 @@ void cipher(char* playfair_square, char* input, OperationType operation_type);
 int createBigrams(char* input, OperationType operation_type);
 void printOutput(char* message, OperationType operation_type);
 void printBigrams(char* bigrams);
-
 void getIndices(char* playfair_square, char element, char* element_x, char* element_y);
 char shiftRight(char index);
 char shiftLeft(char index);
